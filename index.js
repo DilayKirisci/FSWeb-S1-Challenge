@@ -296,24 +296,27 @@ Not: Gönderi sayısı belli olmayan (NA) hesaba katmayın.
 */
 
 function platformaGoreCokGonderiYapanFenomen(fenomenlerDizisi, platformAdi) {
+	const newArray = [];
 	fenomenlerDizisi.forEach((fenom) => {
-		const newArray = [];
 		if (fenom.platform === platformAdi) {
 			newArray.push(fenom);
-
-			for (let i = 0; i < newArray.length; i++) {
-				console.log(newArray[i].posts);
-				if (newArray[i].posts > newArray[i + 1].posts) {
-					newArray = newArray[i];
-					console.log(newArray);
-					return newArray.profile;
-				}
-			}
 		}
 	});
+	let max = newArray[0].posts;
+	let profileWithMaxPosts = newArray[0].profile;
+	for (let i = 0; i < newArray.length; i++) {
+		if (newArray[i].posts > max) {
+			max = newArray[i].posts;
+			profileWithMaxPosts = newArray[i].profile;
+		}
+	}
+	return profileWithMaxPosts;
 }
 
-console.log(platformaGoreCokGonderiYapanFenomen(fenomenler, "TikTok"));
+console.log(
+	"denemedeme",
+	platformaGoreCokGonderiYapanFenomen(fenomenler, "TikTok")
+);
 /* ***** GÖREVLERİN SONU ***** */
 
 /*Bu satırdan sonra koda dokunmayın! */
